@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
           children: [
             TextButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, Common().locationRoute);
+                  Navigator.pushNamed(context, Common.locationRoute);
                 },
                 icon: const Icon(Icons.edit_location),
                 label: const Text("Edit Location")

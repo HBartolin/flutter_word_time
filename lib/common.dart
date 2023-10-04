@@ -1,5 +1,5 @@
 class Common {
-  String locationRoute="/location";
-  String homeRoute="/home";
-  String rootRoute="/";
+  static const String locationRoute="/location";
+  static const String homeRoute="/home";
+  static const String rootRoute="/";
 }
