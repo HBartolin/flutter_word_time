@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_word_time/common.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
           children: [
             TextButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/location");
+                  Navigator.pushNamed(context, Common().locationRoute);
                 },
                 icon: const Icon(Icons.edit_location),
                 label: const Text("Edit Location")
