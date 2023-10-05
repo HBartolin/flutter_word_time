@@ -1,6 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:flutter_word_time/services/word_time.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -8,26 +7,30 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  String time = 'loading';
+
   @override
   void initState() {
-    getTime();
+    setupWordTime();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Loading"),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(50.0),
+        child: Text(time),
+      ),
     );
   }
 
-  void getTime() async {
-    Response response= await get("https://worldtimeapi.org/api/timezone/Europe/Zagreb" as Uri);
-    Map data=jsonDecode(response.body);
+  void setupWordTime() async {
+    WorldTime worldTime=WorldTime(location: "Berlin", flag: "germany.png", url: "Europe/Berlin");
+    await worldTime.getTime();
+    print(worldTime.time);
 
-    String datetime = data['datetime'];
-    String offset = data['utc_offset'].substring(1,3);
-
-    DateTime now = DateTime.parse(datetime);
-    now = now.add(Duration(hours: int.parse(offset)));
+    setState(() {
+      time = worldTime.time;
+    });
   }
 }

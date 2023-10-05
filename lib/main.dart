@@ -6,7 +6,7 @@ import 'package:flutter_word_time/common.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: Common.homeRoute,
+    initialRoute: Common.rootRoute,
     routes: {
       Common.rootRoute: (context) => Loading(),
       Common.homeRoute: (context) => Home(),
