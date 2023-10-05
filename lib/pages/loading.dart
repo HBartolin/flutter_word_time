@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_word_time/common.dart';
 import 'package:flutter_word_time/services/word_time.dart';
 
 class Loading extends StatefulWidget {
@@ -7,7 +8,6 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  String time = 'loading';
 
   @override
   void initState() {
@@ -16,10 +16,10 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Text(time),
+        padding: EdgeInsets.all(50.0),
+        child: Text('loading..'),
       ),
     );
   }
@@ -27,10 +27,15 @@ class _LoadingState extends State<Loading> {
   void setupWordTime() async {
     WorldTime worldTime=WorldTime(location: "Berlin", flag: "germany.png", url: "Europe/Berlin");
     await worldTime.getTime();
-    print(worldTime.time);
 
-    setState(() {
-      time = worldTime.time;
-    });
+    Navigator.pushReplacementNamed(
+        context,
+        Common.homeRoute,
+        arguments: {
+          'location': worldTime.location,
+          'flag': worldTime.flag,
+          'time': worldTime.time,
+        }
+    );
   }
 }
