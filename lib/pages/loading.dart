@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_word_time/common.dart';
 import 'package:flutter_word_time/services/word_time.dart';
 
@@ -11,15 +12,19 @@ class _LoadingState extends State<Loading> {
 
   @override
   void initState() {
+    super.initState();
     setupWordTime();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(50.0),
-        child: Text('loading..'),
+    return Scaffold(
+      backgroundColor: Colors.blue[900],
+      body: const Center(
+          child: SpinKitThreeInOut(
+            color: Colors.white,
+            size: 80.0,
+          ),
       ),
     );
   }
