@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_word_time/services/word_time.dart';
 
 class ChooseLocation extends StatefulWidget {
+  const ChooseLocation({super.key});
+
   @override
   State<ChooseLocation> createState() => _ChooseLocationState();
 }
@@ -22,6 +24,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
   void updateTime(index) async {
     WorldTime instance = locations[index];
     await instance.getTime();
+
+    if (!context.mounted) return;
 
     Navigator.pop(context, {
       'location': instance.location,

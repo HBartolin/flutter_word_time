@@ -4,6 +4,8 @@ import 'package:flutter_word_time/common.dart';
 import 'package:flutter_word_time/services/word_time.dart';
 
 class Loading extends StatefulWidget {
+  const Loading({super.key});
+
   @override
   State<Loading> createState() => _LoadingState();
 }
@@ -32,6 +34,8 @@ class _LoadingState extends State<Loading> {
   void setupWordTime() async {
     WorldTime worldTime=WorldTime(location: "Berlin", flag: "germany.png", url: "Europe/Berlin");
     await worldTime.getTime();
+
+    if (!context.mounted) return;
 
     Navigator.pushReplacementNamed(
         context,
