@@ -8,9 +8,9 @@ void main() {
   runApp(MaterialApp(
     initialRoute: Common.rootRoute,
     routes: {
-      Common.rootRoute: (context) => Loading(),
-      Common.homeRoute: (context) => Home(),
-      Common.locationRoute: (context) => ChooseLocation()
+      Common.rootRoute: (context) => const Loading(),
+      Common.homeRoute: (context) => const Home(),
+      Common.locationRoute: (context) => const ChooseLocation()
     },
   ));
 }
