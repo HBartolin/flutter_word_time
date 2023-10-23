@@ -21,20 +21,6 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(location: 'Anadyr', flag: 'uk.png', url: 'Asia/Anadyr')
   ];
 
-  void updateTime(index) async {
-    WorldTime instance = locations[index];
-    await instance.getTime();
-
-    if (!context.mounted) return;
-
-    Navigator.pop(context, {
-      'location': instance.location,
-      'time': instance.time,
-      'flag': instance.flag,
-      'isDaytime': instance.isDaytime,
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,5 +54,19 @@ class _ChooseLocationState extends State<ChooseLocation> {
         },
       ),
     );
+  }
+
+  void updateTime(index) async {
+    WorldTime instance = locations[index];
+    await instance.getTime();
+
+    if (!context.mounted) return;
+
+    Navigator.pop(context, {
+      'location': instance.location,
+      'time': instance.time,
+      'flag': instance.flag,
+      'isDaytime': instance.isDaytime,
+    });
   }
 }
